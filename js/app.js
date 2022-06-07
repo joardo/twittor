@@ -15,7 +15,7 @@ if( navigator.serviceWorker) {
     
 
     navigator.serviceWorker.register(swLocation)
-    .then(registro => console.log('Service Worker Registrado', registro))
+    .then(registro => console.log('Service Worker Registrado'+ swLocation, registro))
     .catch(error => console.log('Service Worker No Registrado', error));
 }
 
