@@ -3,20 +3,26 @@ var url = window.location.href;
 var swLocation = "/twittor/sw.js";
 
 
-
+console.log(url);
 
 // Cargar el SW
 
 if( navigator.serviceWorker) {
 
     if (url.includes('localhost')){
-        swLocation = '/sw.js';
+        swLocation = '/swLocal.js';
+        navigator.serviceWorker.register(swLocation)
+        .then(registro => console.log('Service Worker Registrado'+ swLocation, registro))
+        .catch(error => console.log('Service Worker No Registrado', error));
+    } else {
+        navigator.serviceWorker.register(swLocation, { scope: '/twittor/' })
+        .then(registro => console.log('Service Worker Registrado'+ swLocation, registro))
+        .catch(error => console.log('Service Worker No Registrado', error));
     }
+
+        
     
 
-    navigator.serviceWorker.register(swLocation)
-    .then(registro => console.log('Service Worker Registrado'+ swLocation, registro))
-    .catch(error => console.log('Service Worker No Registrado', error));
 }
 
 
